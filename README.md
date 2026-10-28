@@ -11,7 +11,8 @@ Jord van Leeuwen¹, Vincent de Boer², and Vittorio Saggiomo¹
 ¹ Department of BioNanoTechnology, Wageningen University & Research
 ² Department of Human and Animal Physiology, Wageningen University & Research
 
-> **Reports:** [full technical report (DOCX)](reports/OSE_NanoDrop_Report.docx) · [one-page summary (DOCX)](reports/OSE_NanoDrop_One-Page.docx)
+> **Reports (PDF, for in-browser reading):** [full technical report](reports/OSE_NanoDrop_Report.pdf) · [one-page summary](reports/OSE_NanoDrop_One-Page.pdf)
+> **Editable sources (DOCX):** [full report](reports/OSE_NanoDrop_Report.docx) · [one-page summary](reports/OSE_NanoDrop_One-Page.docx)
 
 ---
 
@@ -84,7 +85,7 @@ The demonstration — with the blank measurement, the 1× vs 10× averaged absor
 
 | Folder | What is inside |
 |---|---|
-| [`reports/`](reports/) | The two project reports: the [full technical report](reports/OSE_NanoDrop_Report.docx) and the [one-page summary](reports/OSE_NanoDrop_One-Page.docx). |
+| [`reports/`](reports/) | The two project reports as PDFs for in-browser reading — [full technical report](reports/OSE_NanoDrop_Report.pdf) and [one-page summary](reports/OSE_NanoDrop_One-Page.pdf) — plus their editable DOCX sources. |
 | [`initial-script/`](initial-script/) | The first working Python driver for the ND-1000 — pure `PyUSB` code (`nanodrop.py`, `main.py`), the exploration notebook, the Windows installation fixes, and the early PyLabRobot prototype kept for provenance. Adapted from [Jordvl/Pylabrobot-Open-science-ND1000](https://github.com/Jordvl/Pylabrobot-Open-science-ND1000/tree/main/Code). |
 | [`demonstration/`](demonstration/) | The PyLabRobot demonstration: real measured data, all plots, the measurement walk-through, and the macOS fix write-up. |
 | [`assets/figures/`](assets/figures/) | Figures 1 and 2 from the report, used on this page. |
