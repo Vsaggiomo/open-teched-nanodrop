@@ -1,29 +1,37 @@
 cff-version: 1.2.0
-message: "If you use this repository, please cite it using the metadata below."
-title: "NanoDrop 1000 via PyLabRobot — a working demo"
+message: "If you use this project, please cite it using the metadata below."
+title: "Open TechEd: Revival of Legacy Teaching Instruments for Modern Education"
 abstract: >-
-  Driving a legacy Thermo Scientific NanoDrop ND-1000 spectrophotometer entirely
-  through PyLabRobot on macOS, with a real UV absorbance spectrum of paracetamol,
-  raw data, plots, and two hardware-verified macOS driver fixes.
+  Legacy scientific instruments are often discarded not because their hardware
+  has failed, but because the proprietary software that controls them is no
+  longer supported on modern operating systems. This project pilots the revival
+  of one such instrument, the Thermo Fisher NanoDrop 1000 microvolume
+  spectrophotometer, by reverse-engineering its undocumented USB communication
+  protocol and writing open-source Python software to control it. The work
+  includes a pure-Python driver, integration into PyLabRobot, validation
+  against a literature xenon lamp spectrum and a paracetamol absorbance
+  measurement, and a demonstration with raw data and plots.
 authors:
-  - family-names: "de Boer"
-    given-names: "Vincent"
-    affiliation: "Wageningen University & Research"
   - family-names: "van Leeuwen"
     given-names: "Jord"
-    affiliation: "Wageningen University & Research"
+    affiliation: "Wageningen University & Research, Department of BioNanoTechnology"
+  - family-names: "de Boer"
+    given-names: "Vincent"
+    affiliation: "Wageningen University & Research, Department of Human and Animal Physiology"
   - family-names: "Saggiomo"
     given-names: "Vittorio"
-    affiliation: "Wageningen University & Research"
+    affiliation: "Wageningen University & Research, Department of BioNanoTechnology"
 version: "1.0.0"
 license: MIT
-doi: "10.5281/zenodo.22695032"
-date-released: "2026-09-10"
-url: "https://github.com/vcjdeboer/nanodrop-pylabrobot-demo"
-repository-code: "https://github.com/vcjdeboer/nanodrop-pylabrobot-demo"
+date-released: "2026-10-28"
+url: "https://github.com/Vsaggiomo/open-teched-nanodrop"
+repository-code: "https://github.com/Vsaggiomo/open-teched-nanodrop"
 keywords:
   - NanoDrop ND-1000
   - PyLabRobot
   - UV-Vis spectrophotometry
-  - laboratory automation
+  - reverse engineering
+  - legacy instruments
   - open science
+  - laboratory automation
+  - sustainability
