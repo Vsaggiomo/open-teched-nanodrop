@@ -30,7 +30,7 @@ This is not only a question of money. It touches four broader problems:
 - **Interoperability.** Proprietary software keeps instruments out of automated workflows, which is a growing problem for self-driving laboratories.
 - **Legacy instruments and e-waste.** Declaring an instrument "legacy" pushes laboratories to replace hardware that still works, sometimes forcing them to keep an unpatched Windows XP machine alive just to run it. In a **teaching** environment this is especially wasteful: universities buy many instruments for practicals and then have to discard them because the software is stranded.
 
-Open-source software is mature and open-source hardware is growing, but the link between the two — software that lets you own and control your hardware — is still missing. **Open TechEd** pilots that link: pick up a legacy teaching instrument, reverse-engineer it, and give it an open, modern software stack.
+Open-source software is mature and open-source hardware is growing, but the link between the two — software that lets you own and control your hardware — is still missing. **Open TechEd** is a pilot that links the two: pick up a legacy teaching instrument, reverse-engineer it, and give it an open, modern software stack.
 
 The project was funded by the **WUR Open Science & Education programme** (grant no. OSE202534), so we focused on the legacy-instrument and e-waste angle — while addressing the other points along the way. Getting a complete list of legacy instruments from the *Practicum Facilitaire Ondersteuning* (PFO) proved impossible, but talking to them made one thing clear: the NanoDrop 1000 was an instrument they used to use and can no longer run. We also had a couple of them lying around, so the pilot chose itself.
 
@@ -42,7 +42,7 @@ The **Thermo Fisher NanoDrop 1000 (ND-1000)** is a full-spectrum UV-Vis microvol
 - **Dynamic range:** two path lengths (2 mm and 0.2 mm) are used automatically within each measurement, covering roughly 2–3,700 ng/µL of dsDNA without dilution.
 - **Use:** quantifying DNA/RNA (A260/A280), proteins (A280, Bradford, BCA, Lowry), dye labelling, and general UV-Vis work.
 
-The instrument is controlled from a Windows PC over USB by the *NanoDrop 1000 Operating Software* (v3.8.1, last released June 2011). Officially it runs only on Windows XP, Vista, and Windows 7 — precisely the "legacy" situation described above. Yet the hardware is simple, well documented, and still fully functional, which makes it an ideal candidate for reverse engineering. Under the hood, the optical core is an **Ocean Optics USB2000** spectrometer.
+The instrument is controlled from a Windows PC over USB by the *NanoDrop 1000 Operating Software* (v3.8.1, last released June 2011). Officially it runs only on Windows XP, Vista, and Windows 7 — precisely the "legacy" situation described above. Yet the hardware is simple, well documented, and still fully functional, which makes it an ideal candidate for reverse engineering. Under the hood, the optical core is a **modified OEM Ocean Optics USB2000** spectrometer.
 
 ## What we did
 
@@ -71,28 +71,28 @@ The reverse engineering was black-box: we ran the original vendor software on Wi
 
 The pilot worked. The revived NanoDrop 1000 is now a fully usable, open piece of laboratory equipment:
 
-- **It runs on Windows, macOS, and Linux.** No vendor licence, no subscription, no vendor key — just Python and an open USB driver.
+- **It runs on Windows, macOS, and Linux.** The driver is OS-agnostic and needs no vendor license, no subscription, and no vendor key — just Python and an open USB driver.
 - **It is part of PyLabRobot.** The driver was contributed upstream and merged in [PyLabRobot PR #1166](https://github.com/PyLabRobot/pylabrobot/pull/1166) (September 2026), so the instrument can be orchestrated together with other laboratory hardware.
 - **It was validated on real measurements.** The measured xenon flash-lamp spectrum closely matches the reference spectrum from the literature (characteristic UV peaks, the sharp triplet-like structure around 490 nm, and the features near 540 nm and in the red/IR). The instrument then correctly detected **paracetamol in water**, resolving its strong UV band at λ<sub>max</sub> ≈ 243 nm after blank subtraction, scan averaging, and smoothing.
 - **It exposed and fixed real platform issues.** Testing on macOS surfaced a `clear_halt` crash and a lamp that would not always switch off; both were fixed (best-effort `clear_halt`, USB reset at teardown) and hardware-verified.
 
-The demonstration repository — with the blank measurement, the 1× vs 10× averaged absorbance, the boxcar vs Savitzky–Golay comparison, and all raw data — is preserved in [`demonstration/`](demonstration/).
+The demonstration — with the blank measurement, the 1× vs 10× averaged absorbance, the boxcar vs Savitzky–Golay comparison, and the archived measurement arrays — is preserved in [`demonstration/`](demonstration/).
 
-**Why this matters.** Instead of replacing working hardware, we extend its life at almost zero cost: a free and open piece of software replaces the outdated package that turned a >€200,000 asset worthless. The university regains full ownership of both the instrument and its data, the hardware stays out of the waste stream, and the instrument can join modern automated workflows. This pilot proves the approach on one real instrument; scaling it to the many other "legacy" instruments across WUR turns old, unused assets back into usable ones — saving money, cutting e-waste, and giving the university full control of its own equipment.
+**Why this matters.** Instead of replacing working hardware, we extend its life at almost zero cost: a free and open piece of software replaces the outdated package that made a €20,000 instrument unusable and a €200,000 fleet investment worthless. The university regains full ownership of both the instrument and its data, the hardware stays out of the waste stream, and the instrument can join modern automated workflows. This pilot proves the approach on one real instrument; scaling it to the many other "legacy" instruments across WUR turns old, unused assets back into usable ones — saving money, cutting e-waste, and giving the university full control of its own equipment.
 
 ## Repository guide
 
 | Folder | What is inside |
 |---|---|
 | [`reports/`](reports/) | The two project reports: the [full technical report](reports/OSE_NanoDrop_Report.docx) and the [one-page summary](reports/OSE_NanoDrop_One-Page.docx). |
-| [`initial-script/`](initial-script/) | The first, PyLabRobot-free Python driver for the ND-1000 — pure `PyUSB` code (`nanodrop.py`, `main.py`), the exploration notebook, and the Windows installation fixes. Forked from [Jordvl/Pylabrobot-Open-science-ND1000](https://github.com/Jordvl/Pylabrobot-Open-science-ND1000/tree/main/Code). |
-| [`demonstration/`](demonstration/) | The PyLabRobot demonstration: real measured data, all plots, the measurement walk-through, and the macOS fixes. |
+| [`initial-script/`](initial-script/) | The first working Python driver for the ND-1000 — pure `PyUSB` code (`nanodrop.py`, `main.py`), the exploration notebook, the Windows installation fixes, and the early PyLabRobot prototype kept for provenance. Adapted from [Jordvl/Pylabrobot-Open-science-ND1000](https://github.com/Jordvl/Pylabrobot-Open-science-ND1000/tree/main/Code). |
+| [`demonstration/`](demonstration/) | The PyLabRobot demonstration: real measured data, all plots, the measurement walk-through, and the macOS fix write-up. |
 | [`assets/figures/`](assets/figures/) | Figures 1 and 2 from the report, used on this page. |
 
 ## Links to the project
 
 - **Demonstration repository:** [vcjdeboer/nanodrop-pylabrobot-demo](https://github.com/vcjdeboer/nanodrop-pylabrobot-demo)
-- **PyLabRobot pull request (merged):** [PyLabRobot/pylabrobot#1166](https://github.com/PyLabRobot/pylabrobot/pull/1166)
+- **PyLabRobot pull request (merged):** [PyLabRobot/pylabrobot#1166](https://github.com/PyLabRobot/pylabrobot/pull/1166) (Jordvl, refactored by Rick Wierenga)
 - **Initial reverse-engineering code:** [Jordvl/Pylabrobot-Open-science-ND1000](https://github.com/Jordvl/Pylabrobot-Open-science-ND1000)
 - **Zenodo raw data archive:** [10.5281/zenodo.22695032](https://doi.org/10.5281/zenodo.22695032)
 
@@ -108,4 +108,4 @@ This work was supported by the **WUR Open Science & Education programme** (grant
 
 ## License
 
-[MIT](LICENSE) © 2026 Jord van Leeuwen, Vincent de Boer, and Vittorio Saggiomo.
+[MIT](LICENSE) © 2026 Vincent de Boer, Jord van Leeuwen, and Vittorio Saggiomo.
